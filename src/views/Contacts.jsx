@@ -1,26 +1,23 @@
 import React, { useEffect, useContext } from "react";
-import { Context } from "../hooks/useGlobalReducer";
+import  useGlobalReducer  from "../hooks/useGlobalReducer";
 import ContactCard from "../components/ContactCard";
 import { Link } from "react-router-dom";
 
 const Contacts = () => {
 
-  const { store, dispatch } = useContext(Context);
+  const { store, dispatch } = useGlobalReducer();
 
   useEffect(() => {
-
-    fetch("https://playground.4geeks.com/contact/agendas/NickyMouse")
-      .then(res => res.json())
-      .then(data => {
-
-        dispatch({
-          type: "set_contacts",
-          payload: data.contacts
-        });
-
+  fetch("https://playground.4geeks.com/contact/agendas/NickyMouse/contacts")
+    .then(res => res.json())
+    .then(data => {
+      dispatch({
+        type: "set_contacts",
+        payload: data.contacts
       });
-
-  }, []);
+    })
+    .catch(err => console.log(err));
+}, []);
 
   return (
 

@@ -35,9 +35,10 @@ const AddContacts = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(bodyData)
     })
-      .then(response => {
+      .then(async response => {
         if (!response.ok) {
-          return response.json().then(errorData => {
+          try {
+            const errorData = await response.json();
             console.error("Error creando contacto:", errorData);
             if (errorData.detail) {
               const missingFields = errorData.detail
@@ -48,10 +49,10 @@ const AddContacts = () => {
               alert(`Error creando contacto: ${response.status}`);
             }
             throw new Error("Error creando contacto");
-          }).catch(() => {
+          } catch {
             alert(`Error creando contacto: ${response.status}`);
             throw new Error("Error creando contacto");
-          });
+          }
         }
         return response.json();
       })

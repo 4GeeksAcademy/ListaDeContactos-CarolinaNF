@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { Context } from "../hooks/useGlobalReducer";
+import  useGlobalReducer  from "../hooks/useGlobalReducer";
 import { Link } from "react-router-dom";
 
 const ContactCard = ({ contact }) => {
 
-  const { dispatch } = useContext(Context);
+  const { dispatch } = useGlobalReducer();
 
   const deleteContact = () => {
 

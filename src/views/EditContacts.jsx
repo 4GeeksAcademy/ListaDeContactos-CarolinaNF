@@ -59,7 +59,7 @@ const EditContacts = () => {
       .then(data => {
         console.log("Contacto actualizado:", data);
         alert("Contacto actualizado correctamente!");
-        // Limpiar formulario si quieres
+        
         setForm({ id: "", full_name: "", email: "", phone: "", address: "" });
       })
       .catch(error => console.error(error));
